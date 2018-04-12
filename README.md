@@ -34,3 +34,7 @@ To get a value in a certain unit, call it as a subscripted argument:
 >>> y["J/kg*K"]
 4185.5
 ```
+
+## Structure
+
+The `Measure` object acts as a floating point number, implementing all the math operators. The `Dimension` object represents the dimension of a measure, having values for each base SI dimensions (including angles as a dimension).
