@@ -100,7 +100,7 @@ class Measure:
             self.value /= other
     
     def __pow__(self, power):
-        return Measure(self.value ** power, self.dimension ** power)
+        return Measure(self.value ** power, str(self.dimension ** power)) # FIXME: this is a gross way to do this (going through a string representation)
     
     def __ipow__(self, power):
         self.value **= power
@@ -133,6 +133,9 @@ class Measure:
             return self.value/m # get value from base units
         else:
             raise ValueError("the measure is not in the dimension of that unit")
+
+def sqrt(val):
+    return val**0.5
 
 def readUnit(unitString):
     """
@@ -194,8 +197,6 @@ def getUnitMultiplierAndDimension(unit):
         return (m*nm, nd)
     else:
         return (m, d)
-
-# TODO: also make Measures work with sqrt
 
 unitPowerReplacements = {"⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9"}
 
