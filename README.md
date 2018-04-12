@@ -4,9 +4,11 @@ A python library for handling units and measurements.
 
 ## Usage
 
-import the Measure python file:
+put the `pyUnits` directory where you will be referencing it
+
+import as a module
 ```python
-from Measure import *
+from pyUnits import *
 ```
 
 The primary object you will interact with is the `Measure` object.

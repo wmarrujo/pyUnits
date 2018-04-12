@@ -1,5 +1,3 @@
-import fractions as Ff
-
 # TODO: figure out how to pass by value
 class Dimension:
     baseUnits = {"length": "m", "mass": "kg", "time": "s", "current": "A", "temperature": "K", "amountOfSubstance": "mol", "luminousIntensity": "cd", "angle": "rad"}

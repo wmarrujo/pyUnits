@@ -190,7 +190,7 @@ def getUnitMultiplierAndDimension(unit):
     returns the multiplier to base units and the dimension of that unit
     """
     # get the associated multiplier and dimension or unit
-    (m, d) = unitInformation[unit]
+    (m, d) = units[unit]
     # test if it returned a reference unit
     if isinstance(d, str): # if it returned a string
         (nm, nd) = readUnit(d)
@@ -200,11 +200,11 @@ def getUnitMultiplierAndDimension(unit):
 
 unitPowerReplacements = {"⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9"}
 
-# unitInformation :: {unit: (multiplier, dimension|unitstring)}
+# units :: {unit: (multiplier, dimension|unitstring)}
 # !!!: be sure this does not have any unit reference loops
 # specify all single-instance unit strings (all compound units are defined using
 # a reference to other units in this list)
-unitInformation = {
+units = {
     # Base SI
     
     "m": (1, Dimension(length=1)),
