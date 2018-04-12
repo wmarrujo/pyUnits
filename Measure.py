@@ -129,7 +129,10 @@ class Measure:
     
     def __getitem__(self, key):
         (m, d) = readUnit(key)
-        return self.value/m # get value from base units
+        if d == self.dimension:
+            return self.value/m # get value from base units
+        else:
+            raise ValueError("the measure is not in the dimension of that unit")
 
 def readUnit(unitString):
     """
@@ -192,14 +195,14 @@ def getUnitMultiplierAndDimension(unit):
     else:
         return (m, d)
 
-# READ: https://docs.python.org/3/reference/datamodel.html
-
 # TODO: also make Measures work with sqrt
 
 unitPowerReplacements = {"⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9"}
 
 # unitInformation :: {unit: (multiplier, dimension|unitstring)}
 # !!!: be sure this does not have any unit reference loops
+# specify all single-instance unit strings (all compound units are defined using
+# a reference to other units in this list)
 unitInformation = {
     # Base SI
     
@@ -407,7 +410,7 @@ unitInformation = {
     "barrel": (0.158987294928, "m^3"),
     "barrels": (0.158987294928, "m^3"),
     "gal": (3.78541, "L"),
-    "qt": (0.25, "gal")
+    "qt": (0.25, "gal"),
     
     # Frequency
     "Hz": (1, "1/s"),
@@ -457,7 +460,7 @@ unitInformation = {
     "zN": (1e-21, "N"),
     "yN": (1e-24, "N"),
     
-    "lbm": (4.44822, "N"),
+    "lbf": (4.44822, "N"),
     
     # Pressure
     "Pa": (1, "N/m^2"),
@@ -487,7 +490,7 @@ unitInformation = {
     "atm": (101325, "Pa"),
     
     # Energy
-    "J": (1, "kg*N"),
+    "J": (1, "N*m"),
     
     "YJ": (1e24, "J"),
     "ZJ": (1e21, "J"),
